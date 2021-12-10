@@ -51,11 +51,11 @@ public class NativeBiometric: CAPPlugin {
         let context = LAContext()
         var canEvaluateError: NSError?
         
-        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &canEvaluateError){
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &canEvaluateError){
             
             let reason = call.getString("reason") ?? "For biometric authentication"
             
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { (success, evaluateError) in
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { (success, evaluateError) in
                 
                 if success {
                     call.resolve()
